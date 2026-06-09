@@ -145,10 +145,9 @@ notifBox.addEventListener(
 let wrongCount = 0;
 
 /* HIDE ALERT */
-errorBox.style.display = "none";
+errorBox.classList.add("show");
 
-/* HIDE BLOCK */
-blockedBox.style.display = "none";
+errorBox.classList.remove("show");
 
 /* RESET LOADING */
 window.addEventListener("pageshow", () => {
@@ -206,8 +205,7 @@ otpInputs.forEach((input,index) => {
         input.value.replace(/[^0-9]/g,'');
 
         /* HIDE ERROR */
-        errorBox.style.display =
-        "none";
+        errorBox.classList.remove("show");
 
         /* NEXT BOX */
         if(
@@ -400,18 +398,20 @@ function checkOTP(){
 
 }
 
-function showAlert(title,desc){
+function showAlert(title, desc){
 
-    alertTitle.innerText = title;
-    alertDesc.innerText = desc;
+    if(!errorBox) return;
+
+    alertTitle.textContent = title;
+    alertDesc.textContent = desc;
 
     errorBox.classList.add("show");
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         errorBox.classList.remove("show");
 
-    },2500);
+    }, 2500);
 
 }
 
